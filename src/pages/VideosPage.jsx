@@ -1,53 +1,30 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import videojs from "video.js";
-import "video.js/dist/video-js.css";
-import "videojs-youtube";
+import { useMemo, useState } from "react";
 import { hockeyVideos } from "../data/content";
 
+function toYouTubeEmbedUrl(url) {
+  try {
+    const parsed = new URL(url);
+
+    if (parsed.hostname.includes("youtu.be")) {
+      const id = parsed.pathname.replace("/", "");
+      return id ? `https://www.youtube.com/embed/${id}` : "";
+    }
+
+    const id = parsed.searchParams.get("v");
+    if (id) {
+      return `https://www.youtube.com/embed/${id}`;
+    }
+
+    return "";
+  } catch {
+    return "";
+  }
+}
+
 export default function VideosPage() {
-  const videoRef = useRef(null);
-  const playerRef = useRef(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const activeVideo = useMemo(() => hockeyVideos[activeIndex], [activeIndex]);
-  const initialVideo = hockeyVideos[0];
-
-  useEffect(() => {
-    if (!videoRef.current || playerRef.current) {
-      return undefined;
-    }
-
-    playerRef.current = videojs(videoRef.current, {
-      controls: true,
-      fluid: true,
-      responsive: true,
-      preload: "auto",
-      techOrder: ["youtube"],
-      sources: [
-        {
-          type: "video/youtube",
-          src: initialVideo.url,
-        },
-      ],
-    });
-
-    return () => {
-      if (playerRef.current) {
-        playerRef.current.dispose();
-        playerRef.current = null;
-      }
-    };
-  }, [initialVideo.url]);
-
-  useEffect(() => {
-    if (!playerRef.current) {
-      return;
-    }
-
-    playerRef.current.src({
-      type: "video/youtube",
-      src: activeVideo.url,
-    });
-  }, [activeVideo]);
+  const embedUrl = toYouTubeEmbedUrl(activeVideo?.url || "");
 
   return (
     <section className="stack-lg">
@@ -60,9 +37,20 @@ export default function VideosPage() {
 
       <div className="video-layout">
         <div className="video-player card">
-          <div data-vjs-player>
-            <video ref={videoRef} className="video-js vjs-big-play-centered" />
+          <div className="video-frame-wrap">
+            {embedUrl ? (
+              <iframe
+                className="video-frame"
+                src={embedUrl}
+                title={activeVideo.title}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            ) : (
+              <p className="muted">This video URL is not a valid YouTube link.</p>
+            )}
           </div>
+
           <div className="video-meta">
             <p className="eyebrow">Now playing</p>
             <h3>{activeVideo.title}</h3>

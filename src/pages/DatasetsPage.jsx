@@ -4,7 +4,7 @@ export default function DatasetsPage() {
   return (
     <section className="stack-md">
       <h2>Datasets</h2>
-      <p>Open ice hockey datasets hosted on Hugging Face.</p>
+      <p>Open ice hockey datasets from Hugging Face and broader NHL community sources.</p>
       <div className="grid card-grid">
         {featuredDatasets.map((dataset) => (
           <article key={dataset.name} className="card">

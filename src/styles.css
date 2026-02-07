@@ -328,10 +328,20 @@ h4 {
   gap: 1rem;
 }
 
-.video-player .video-js {
+.video-frame-wrap {
+  position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;
   border-radius: calc(var(--radius) + 2px);
   overflow: hidden;
+  background: #06172b;
+}
+
+.video-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
 }
 
 .video-meta p {

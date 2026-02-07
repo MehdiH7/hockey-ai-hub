@@ -1,6 +1,6 @@
 export const heroStats = [
   { label: "Research Papers", value: "6" },
-  { label: "Datasets", value: "3" },
+  { label: "Datasets", value: "5" },
   { label: "Models", value: "3" },
   { label: "Spaces", value: "3" },
 ];
@@ -26,6 +26,22 @@ export const featuredDatasets = [
     description: "Multi-class ice hockey dataset for object detection.",
     status: "Public",
     link: "https://huggingface.co/datasets/SimulaMet-HOST/HockeyAI",
+  },
+  {
+    name: "MoneyPuck NHL Data",
+    season: "NHL (2008-present)",
+    description:
+      "Open NHL skater, goalie, team and shot datasets with a published data dictionary.",
+    status: "Open (non-commercial)",
+    link: "https://www.moneypuck.com/data.htm",
+  },
+  {
+    name: "fastRhockey-data (NHL)",
+    season: "NHL",
+    description:
+      "Open hockey data repository with NHL schedule/team files and documented PHF play-by-play and boxscore data.",
+    status: "Public",
+    link: "https://github.com/sportsdataverse/fastRhockey-data",
   },
 ];
 
