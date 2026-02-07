@@ -112,3 +112,36 @@ export const papers = [
     note: "Ice-hockey-specific automated cropping pipeline for highlight production.",
   },
 ];
+
+export const hockeyVideos = [
+  {
+    title: "HockeyOrient",
+    description: "Orientation-aware player analysis demo from the HockeyOrient dataset.",
+    url: "https://www.youtube.com/watch?v=ibWJtXZIsM8",
+    note: "Highlights player orientation classification and visual overlays.",
+  },
+  {
+    title: "HockeyRink",
+    description: "Rink keypoint mapping and analytics visualization.",
+    url: "https://www.youtube.com/watch?v=JCnX4N4fi8I",
+    note: "Focuses on rink localization and structured analytics output.",
+  },
+  {
+    title: "HockeyAI",
+    description: "Multi-class object detection showcase for hockey broadcast video.",
+    url: "https://www.youtube.com/watch?v=KYnvicVUtOc",
+    note: "Demonstrates real-time object detection outputs.",
+  },
+  {
+    title: "SmartCrop Ice Hockey",
+    description: "Automatic cropping for social-ready hockey highlights.",
+    url: "https://www.youtube.com/watch?v=Uk-6g1Lq7wo",
+    note: "SmartCrop pipeline tuned for hockey footage and output formats.",
+  },
+  {
+    title: "SmartCrop Ice Hockey (Alt)",
+    description: "Second SmartCrop demo with alternate gameplay footage.",
+    url: "https://www.youtube.com/watch?v=rMmYOCM-k7A",
+    note: "Shows adaptive cropping behavior for different play sequences.",
+  },
+];
