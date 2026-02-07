@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
+import "videojs-youtube";
 import { hockeyVideos } from "../data/content";
 
 export default function VideosPage() {
@@ -15,38 +16,21 @@ export default function VideosPage() {
       return undefined;
     }
 
-    let isMounted = true;
-
-    const setupPlayer = async () => {
-      if (typeof window !== "undefined") {
-        window.videojs = videojs;
-      }
-
-      await import("videojs-youtube");
-
-      if (!isMounted || !videoRef.current) {
-        return;
-      }
-
-      playerRef.current = videojs(videoRef.current, {
-        controls: true,
-        fluid: true,
-        responsive: true,
-        preload: "auto",
-        techOrder: ["youtube"],
-        sources: [
-          {
-            type: "video/youtube",
-            src: initialVideo.url,
-          },
-        ],
-      });
-    };
-
-    void setupPlayer();
+    playerRef.current = videojs(videoRef.current, {
+      controls: true,
+      fluid: true,
+      responsive: true,
+      preload: "auto",
+      techOrder: ["youtube"],
+      sources: [
+        {
+          type: "video/youtube",
+          src: initialVideo.url,
+        },
+      ],
+    });
 
     return () => {
-      isMounted = false;
       if (playerRef.current) {
         playerRef.current.dispose();
         playerRef.current = null;
